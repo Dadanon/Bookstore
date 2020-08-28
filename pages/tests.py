@@ -17,7 +17,7 @@ class PagesTestCase(SimpleTestCase):
         self.assertTemplateUsed(self.response, 'home.html')
 
     def test_content_used(self):
-        self.assertContains(self.response, 'Hi, buddy!')
+        self.assertContains(self.response, 'Homepage')
 
     def test_no_content_used(self):
         self.assertNotContains(self.response, 'Hello, world!')
