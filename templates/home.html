@@ -10,12 +10,12 @@
     {% if user.email %}
         <h2>Hi, buddy! </h2>
         <h4>Your mail is {{ user.email }}?</h4><br>
-        <p>This image is for you:</p>
-        <p><a href="{% url 'logout' %}">LOG OUT</a>, if you want :)</p>
+        <p>So, welcome, <b><i>{{ user.username }}</i></b> !</p>
+        <p><a href="{% url 'account_logout' %}">LOG OUT</a>, if you want :)</p>
     {% else %}
         <h1>Hi, buddy! Your name is {{ user.username }}?</h1>
     {% endif %}
 {% else %}
-    <p>You must <a href="{% url 'login' %}">login</a></p>
+    <p>You must <a href="{% url 'account_login' %}">login</a></p>
 {% endif %}
 {% endblock content %}
