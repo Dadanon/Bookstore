@@ -12,6 +12,9 @@ services:
       - db
     links:
       - db:db
+    environment:
+      - NEW_SECRET_KEY=mi2o1*868#dosapipu6qke!7gw^eh+jp9a6!h)+@6%fq^11ekd
+      - NEW_DEBUG=1
   db:
     image: postgres:12
     environment:
