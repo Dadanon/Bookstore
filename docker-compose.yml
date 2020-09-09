@@ -15,6 +15,7 @@ services:
     environment:
       - NEW_SECRET_KEY=mi2o1*868#dosapipu6qke!7gw^eh+jp9a6!h)+@6%fq^11ekd
       - NEW_DEBUG=1
+      - SENDGRID_API_KEY=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
   db:
     image: postgres:12
     environment:

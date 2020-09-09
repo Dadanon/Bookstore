@@ -1,0 +1,9 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello from {{ site_name }}!
+
+The user {{ user_display }} has given your e-mail address to register an account on {{ site_domain }} so you have this message.
+
+Go to {{ activate_url }} for we were quiet :)
+{% endblocktrans %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Merci de {{ site_name }}!
+{{ site_domain }}{% endblocktrans %}
+{% endautoescape %}
