@@ -13,5 +13,8 @@ class BookDetailView(DetailView):
     model = Book
     template_name = 'books/book_detail.html'
     context_object_name = 'book'
+    extra_context = {
+        'separator': '*' * 80,
+    }
 
 # Create your views here.

@@ -6,6 +6,17 @@
     <h2>{{ book.title }}</h2>
     <p>Author: {{ book.author }}.</p>
     <p>Price: {{ book.price }} $.</p>
+    <p>{{ separator }}</p>
+    {% if book.reviews.all %}
+    <div>
+    <h3>Reviews</h3>
+    <ul>
+        {% for review in book.reviews.all %}
+        <li><i>{{ review.review }}</i> ** <b>{{ review.author }}</b></li>
+        {% endfor %}
+    </ul>
+    </div>
+    {% endif %}
 </div>
 
 {% endblock content %}
