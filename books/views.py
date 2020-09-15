@@ -1,6 +1,10 @@
-from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
+# books/views.py
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    PermissionRequiredMixin
+)
 from django.views.generic import ListView, DetailView
+
 from .models import Book
 
 
@@ -11,7 +15,10 @@ class BookListView(LoginRequiredMixin, ListView):
     login_url = 'account_login'
 
 
-class BookDetailView(LoginRequiredMixin, DetailView):
+class BookDetailView(
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+    DetailView):
     model = Book
     template_name = 'books/book_detail.html'
     context_object_name = 'book'
@@ -19,5 +26,6 @@ class BookDetailView(LoginRequiredMixin, DetailView):
         'separator': '*' * 80,
     }
     login_url = 'account_login'
+    permission_required = 'books.special_status'
 
 # Create your views here.
