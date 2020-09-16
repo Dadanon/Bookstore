@@ -15,7 +15,8 @@ services:
     environment:
       - NEW_SECRET_KEY=mi2o1*868#dosapipu6qke!7gw^eh+jp9a6!h)+@6%fq^11ekd
       - NEW_DEBUG=1
-      - SENDGRID_API_KEY=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
+      - STRIPE_TEST_PUBLISHABLE_KEY=pk_test_51HRw5VAtK7Y1yDfDUwg1ZwkPUB0NJgsEi9eF1qpOJMfAlYAqgZ47GIOuDddbGf7iy9fM6MuCilEeJEm11d2AoOiE00wppwLy5B
+      - STRIPE_TEST_SECRET_KEY=sk_test_51HRw5VAtK7Y1yDfD9zBRKZ5i5CKeYABrDXnDIBZ2sbL195jMPAi87aLRCM8y0KypFmYVDMZpX1YDMD1u1Z8OqI6j00ah0lBXZt
   db:
     image: postgres:12
     environment:
