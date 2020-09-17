@@ -1,7 +1,10 @@
 import stripe
+from django.contrib.auth.models import Permission
 from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.shortcuts import render
+
+stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
 
 
 class OrdersPageView(TemplateView):
@@ -12,12 +15,21 @@ class OrdersPageView(TemplateView):
 
 
 def charge(request):
+    # Get the permission
+    permission = Permission.objects.get(codename='special_status')
+
+    # Get user
+    u = request.user
+
+    # Add to user's permission set
+    u.user_permissions.add(permission)
+
     if request.method == 'POST':
         charge = stripe.Charge.create(
             amount=9939,
             currency='usd',
-            description='Purshase all books',
-            source=request.POST['stripeToken'],
+            description='Purchase all books',
+            source=request.POST['stripeToken']
         )
         return render(request, 'orders/charge.html')
 
