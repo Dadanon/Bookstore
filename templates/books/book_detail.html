@@ -9,8 +9,8 @@
     {% endif %}
     <p>Author: {{ book.author }}.</p>
     <p>Price: {{ book.price }} $.</p>
-    <p>{{ separator }}</p>
     {% if book.reviews.all %}
+    <p>{{ separator }}</p>
     <div>
     <h3>Reviews</h3>
     <ul>
@@ -20,6 +20,16 @@
     </ul>
     </div>
     {% endif %}
+    <p>{{ separator }}</p>
+    <form action="{% url 'charge' %}" method="post">
+    {% csrf_token %}
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="{{ stripe_key }}"
+    data-description="{{ book.title }}"
+    data-amount="{{ book.get_pay_price }}"
+    data-locale="auto">
+    </script>
+</form>
 </div>
 
 {% endblock content %}

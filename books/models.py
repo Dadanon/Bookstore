@@ -18,6 +18,9 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    def get_pay_price(self):
+        return 100 * self.price
+
     def get_absolute_url(self):
         return reverse('book_detail', args=[str(self.id)])
 
