@@ -1,5 +1,7 @@
 # books/views.py
+import stripe
 from django.db.models import Q
+from django.conf import settings
 
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
@@ -8,6 +10,8 @@ from django.contrib.auth.mixins import (
 from django.views.generic import ListView, DetailView
 
 from .models import Book
+
+stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
 
 
 class BookListView(LoginRequiredMixin, ListView):
@@ -30,6 +34,11 @@ class BookDetailView(
     }
     login_url = 'account_login'
     permission_required = 'books.special_status'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['stripe_key'] = settings.STRIPE_TEST_PUBLISHABLE_KEY
+        return context
 
 
 class SearchResultsListView(ListView):

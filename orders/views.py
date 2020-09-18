@@ -9,9 +9,11 @@ stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
 
 class OrdersPageView(TemplateView):
     template_name = 'orders/purchase.html'
-    extra_context = {
-        'stripe_key': settings.STRIPE_TEST_PUBLISHABLE_KEY,
-    }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['stripe_key'] = settings.STRIPE_TEST_PUBLISHABLE_KEY
+        return context
 
 
 def charge(request):
