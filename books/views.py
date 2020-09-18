@@ -1,4 +1,6 @@
 # books/views.py
+from django.db.models import Q
+
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     PermissionRequiredMixin
@@ -35,5 +37,10 @@ class SearchResultsListView(ListView):
     context_object_name = 'book_list'
     template_name = 'books/search_results.html'
 
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Book.objects.filter(
+            Q(title__icontains=query) | Q(author__icontains=query)
+        )
 
 # Create your views here.
