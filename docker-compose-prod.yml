@@ -4,8 +4,6 @@ services:
   web:
     build: .
     command: python /Desktop/manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/Desktop
     ports:
       - 8000:8000
     depends_on:
@@ -14,10 +12,10 @@ services:
       - db:db
     environment:
       - NEW_SECRET_KEY=mi2o1*868#dosapipu6qke!7gw^eh+jp9a6!h)+@6%fq^11ekd
-      - NEW_DEBUG=1
+      - NEW_DEBUG=0
       - STRIPE_TEST_PUBLISHABLE_KEY=pk_test_51HRw5VAtK7Y1yDfDUwg1ZwkPUB0NJgsEi9eF1qpOJMfAlYAqgZ47GIOuDddbGf7iy9fM6MuCilEeJEm11d2AoOiE00wppwLy5B
       - STRIPE_TEST_SECRET_KEY=sk_test_51HRw5VAtK7Y1yDfD9zBRKZ5i5CKeYABrDXnDIBZ2sbL195jMPAi87aLRCM8y0KypFmYVDMZpX1YDMD1u1Z8OqI6j00ah0lBXZt
-      - ENVIRONMENT=development
+      - ENVIRONMENT=production
   db:
     image: postgres:12
     environment:
